@@ -1,0 +1,349 @@
+<!doctype html>
+
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Trigonometric Ratios Quiz</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            #typed-lines {
+                white-space: pre-line;
+            }
+            #typed-lines::after {
+                content: "|";
+                animation: blink 0.8s infinite;
+            }
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+            .welcome-screen {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 999;
+                background: var(--background, #000);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                transition: opacity 0.5s ease;
+            }
+            .welcome-screen.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+            .hidden {
+                display: none;
+            }
+            .active {
+                border: 2px solid #00ffcc;
+                background-color: #222;
+            }
+            .question-box {
+                border: 1px solid #444;
+                padding: 1rem;
+                margin: 1rem;
+                border-radius: 8px;
+                background: #111;
+                color: white;
+                transition: 0.3s ease;
+            }
+            .answer {
+                color: #0f0;
+                margin-top: 0.5rem;
+            }
+            #music-toggle {
+                position: fixed;
+                top: 1rem;
+                right: 4.5rem;
+                z-index: 1000;
+                background: #111;
+                border: none;
+                color: #fff;
+                font-size: 1.5rem;
+                padding: 0.5rem;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            #music-toggle:hover {
+                background: #222;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="bg-music" src="Music.MP3" autoplay loop></audio>
+
+        <button id="music-toggle" title="Toggle music">🔊</button>
+        ><button id="theme-toggle" title="Toggle theme">
+            <span id="theme-icon">🌙</span>
+        </button>
+
+        <div class="loader-bar"></div>
+        <div class="welcome-screen" id="welcome-screen">
+            <div class="welcome-message">
+                <h1><span id="typed-lines"></span></h1>
+                <p class="fade-in">Made with ❤️ by Hackrio</p>
+            </div>
+        </div>
+        <div class="main-content hidden" id="home-screen">
+            <header>
+                <h1 class="glow">Trigonometric Ratios Quiz</h1>
+            </header>
+            <div class="flashcard-selector options fade-in">
+                <button class="option-btn" onclick="loadQuiz('angles')">
+                    Start Full Quiz
+                </button>
+            </div>
+            <section id="about-trig" class="fadein-text">
+                <h2 class="glow">What is Trigonometry?</h2>
+                <p>
+                    Trigonometry is a branch of mathematics dealing with the
+                    relationships between the angles and sides of triangles. It
+                    introduces key ratios such as sine (sin), cosine (cos), and
+                    tangent (tan), which are essential in geometry, physics,
+                    engineering, and various real-world applications.
+                </p>
+            </section>
+        </div>
+        <div class="quiz-section hidden" id="quiz-screen">
+            <div id="quiz">
+                <!-- 30 Questions -->
+                <div class="question-box">
+                    <p class="question">1. What is the value of sin 0°?</p>
+                    <p class="answer hidden">Answer: 0</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">2. What is the value of sin 30°?</p>
+                    <p class="answer hidden">Answer: 1/2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">3. What is the value of sin 45°?</p>
+                    <p class="answer hidden">Answer: 1/√2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">4. What is the value of sin 60°?</p>
+                    <p class="answer hidden">Answer: √3/2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">5. What is the value of sin 90°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">6. What is the value of cos 0°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">7. What is the value of cos 30°?</p>
+                    <p class="answer hidden">Answer: √3/2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">8. What is the value of cos 45°?</p>
+                    <p class="answer hidden">Answer: 1/√2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">9. What is the value of cos 60°?</p>
+                    <p class="answer hidden">Answer: 1/2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">10. What is the value of cos 90°?</p>
+                    <p class="answer hidden">Answer: 0</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">11. What is the value of tan 0°?</p>
+                    <p class="answer hidden">Answer: 0</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">12. What is the value of tan 30°?</p>
+                    <p class="answer hidden">Answer: 1/√3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">13. What is the value of tan 45°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">14. What is the value of tan 60°?</p>
+                    <p class="answer hidden">Answer: √3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">15. What is the value of tan 90°?</p>
+                    <p class="answer hidden">Answer: Not Defined</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">16. What is the value of cosec 0°?</p>
+                    <p class="answer hidden">Answer: Not Defined</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">17. What is the value of cosec 30°?</p>
+                    <p class="answer hidden">Answer: 2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">18. What is the value of cosec 45°?</p>
+                    <p class="answer hidden">Answer: √2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">19. What is the value of cosec 60°?</p>
+                    <p class="answer hidden">Answer: 2/√3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">20. What is the value of cosec 90°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">21. What is the value of sec 0°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">22. What is the value of sec 30°?</p>
+                    <p class="answer hidden">Answer: 2/√3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">23. What is the value of sec 45°?</p>
+                    <p class="answer hidden">Answer: √2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">24. What is the value of sec 60°?</p>
+                    <p class="answer hidden">Answer: 2</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">25. What is the value of sec 90°?</p>
+                    <p class="answer hidden">Answer: Not Defined</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">26. What is the value of cot 0°?</p>
+                    <p class="answer hidden">Answer: Not Defined</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">27. What is the value of cot 30°?</p>
+                    <p class="answer hidden">Answer: √3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">28. What is the value of cot 45°?</p>
+                    <p class="answer hidden">Answer: 1</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">29. What is the value of cot 60°?</p>
+                    <p class="answer hidden">Answer: 1/√3</p>
+                </div>
+                <div class="question-box">
+                    <p class="question">30. What is the value of cot 90°?</p>
+                    <p class="answer hidden">Answer: 0</p>
+                </div>
+                <div style="text-align: center; margin-top: 20px">
+                    <button onclick="goBack()" class="option-btn">
+                        🔙 Back to Menu
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const welcome = document.getElementById("welcome-screen");
+                const main = document.getElementById("home-screen");
+                const typedLines = document.getElementById("typed-lines");
+                const lines = [
+                    "WELCOME TO",
+                    "TRIGONOMETRIC RATIOS",
+                    "FLASHCARD"
+                ];
+                let lineIndex = 0,
+                    charIndex = 0;
+                function typeLine() {
+                    if (lineIndex >= lines.length) {
+                        setTimeout(() => {
+                            welcome.classList.add("hidden");
+                            main.classList.remove("hidden");
+                        }, 2000);
+                        return;
+                    }
+                    const currentLine = lines[lineIndex];
+                    if (charIndex < currentLine.length) {
+                        typedLines.textContent += currentLine[charIndex++];
+                        setTimeout(typeLine, 60);
+                    } else {
+                        typedLines.textContent += "\n";
+                        lineIndex++;
+                        charIndex = 0;
+                        setTimeout(typeLine, 300);
+                    }
+                }
+                typeLine();
+                document
+                    .getElementById("theme-toggle")
+                    .addEventListener("click", () => {
+                        const theme =
+                            document.documentElement.getAttribute("data-theme");
+                        const newTheme = theme === "dark" ? "light" : "dark";
+                        document.documentElement.setAttribute(
+                            "data-theme",
+                            newTheme
+                        );
+                        document.getElementById("theme-icon").textContent =
+                            newTheme === "dark" ? "🌙" : "☀️";
+                    });
+            });
+            function loadQuiz(category) {
+                document.getElementById("home-screen").classList.add("hidden");
+                document
+                    .getElementById("quiz-screen")
+                    .classList.remove("hidden");
+                const questionBoxes =
+                    document.querySelectorAll(".question-box");
+                let current = 0;
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                function showQuestion() {
+                    questionBoxes.forEach(q => {
+                        q.classList.remove("active");
+                        const ans = q.querySelector(".answer");
+                        if (ans) ans.classList.add("hidden");
+                    });
+                    const currentBox = questionBoxes[current];
+                    if (!currentBox) {
+                        document.getElementById(
+                            "quiz"
+                        ).innerHTML = `<h2 class="glow" style="text-align:center;">🎉 All done!</h2>`;
+                        return;
+                    }
+                    currentBox.classList.add("active");
+                    setTimeout(() => {
+                        const ans = currentBox.querySelector(".answer");
+                        if (ans) ans.classList.remove("hidden");
+                    }, 3000);
+                    setTimeout(() => {
+                        current++;
+                        showQuestion();
+                    }, 6000);
+                }
+                showQuestion();
+            }
+            function goBack() {
+                document.getElementById("quiz-screen").classList.add("hidden");
+                document
+                    .getElementById("home-screen")
+                    .classList.remove("hidden");
+            }
+            
+const music = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+musicToggle.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicToggle.textContent = "🔊";
+  } else {
+    music.pause();
+    musicToggle.textContent = "🔇";
+  }
+});
+        </script>
+    </body>
+</html>
